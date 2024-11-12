@@ -79,7 +79,9 @@ func MakeSSMParameterName(version, instanceType, imageFamily string) (string, er
 		return "", &UnsupportedQueryError{msg: fmt.Sprintf("SSM Parameter lookups for %s AMIs is not supported", imageFamily)}
 	case api.NodeImageFamilyUbuntu2004,
 		api.NodeImageFamilyUbuntu2204,
-		api.NodeImageFamilyUbuntuPro2204:
+		api.NodeImageFamilyUbuntuPro2204,
+		api.NodeImageFamilyUbuntu2404,
+		api.NodeImageFamilyUbuntuPro2404:
 		if err := validateVersionForUbuntu(version, imageFamily); err != nil {
 			return "", err
 		}
@@ -209,6 +211,17 @@ func validateVersionForUbuntu(version, imageFamily string) error {
 		var err error
 		supportsUbuntu := false
 		const minVersion = api.Version1_29
+		supportsUbuntu, err = utils.IsMinVersion(minVersion, version)
+		if err != nil {
+			return err
+		}
+		if !supportsUbuntu {
+			return &UnsupportedQueryError{msg: fmt.Sprintf("%s requires EKS version greater or equal than %s", imageFamily, minVersion)}
+		}
+	case api.NodeImageFamilyUbuntu2404, api.NodeImageFamilyUbuntuPro2404:
+		var err error
+		supportsUbuntu := false
+		const minVersion = api.Version1_31
 		supportsUbuntu, err = utils.IsMinVersion(minVersion, version)
 		if err != nil {
 			return err
