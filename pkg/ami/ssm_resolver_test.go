@@ -314,7 +314,7 @@ var _ = Describe("AMI Auto Resolution", func() {
 
 				DescribeTable("should return a valid AMI",
 					func(version string) {
-						addMockGetParameter(p, fmt.Sprintf("/aws/service/canonical/ubuntu/eks/20.04/%s/stable/current/amd64/hvm/ebs-gp2/ami-id", version), expectedAmi)
+						addMockGetParameter(p, fmt.Sprintf("/aws/service/canonical/ubuntu/eks/24.04/%s/stable/current/amd64/hvm/ebs-gp2/ami-id", version), expectedAmi)
 
 						resolver := NewSSMResolver(p.MockSSM())
 						resolvedAmi, err = resolver.Resolve(context.Background(), region, version, instanceType, imageFamily)
@@ -341,7 +341,7 @@ var _ = Describe("AMI Auto Resolution", func() {
 					})
 					DescribeTable("should return a valid AMI for arm64",
 						func(version string) {
-							addMockGetParameter(p, fmt.Sprintf("/aws/service/canonical/ubuntu/eks/20.04/%s/stable/current/arm64/hvm/ebs-gp2/ami-id", version), expectedAmi)
+							addMockGetParameter(p, fmt.Sprintf("/aws/service/canonical/ubuntu/eks/24.04/%s/stable/current/arm64/hvm/ebs-gp2/ami-id", version), expectedAmi)
 
 							resolver := NewSSMResolver(p.MockSSM())
 							resolvedAmi, err = resolver.Resolve(context.Background(), region, version, instanceType, imageFamily)
@@ -386,7 +386,7 @@ var _ = Describe("AMI Auto Resolution", func() {
 
 				DescribeTable("should return a valid AMI",
 					func(version string) {
-						addMockGetParameter(p, fmt.Sprintf("/aws/service/canonical/ubuntu/eks-pro/20.04/%s/stable/current/amd64/hvm/ebs-gp2/ami-id", version), expectedAmi)
+						addMockGetParameter(p, fmt.Sprintf("/aws/service/canonical/ubuntu/eks-pro/24.04/%s/stable/current/amd64/hvm/ebs-gp2/ami-id", version), expectedAmi)
 
 						resolver := NewSSMResolver(p.MockSSM())
 						resolvedAmi, err = resolver.Resolve(context.Background(), region, version, instanceType, imageFamily)
@@ -407,7 +407,7 @@ var _ = Describe("AMI Auto Resolution", func() {
 					})
 					DescribeTable("should return a valid AMI for arm64",
 						func(version string) {
-							addMockGetParameter(p, fmt.Sprintf("/aws/service/canonical/ubuntu/eks-pro/20.04/%s/stable/current/arm64/hvm/ebs-gp2/ami-id", version), expectedAmi)
+							addMockGetParameter(p, fmt.Sprintf("/aws/service/canonical/ubuntu/eks-pro/24.04/%s/stable/current/arm64/hvm/ebs-gp2/ami-id", version), expectedAmi)
 
 							resolver := NewSSMResolver(p.MockSSM())
 							resolvedAmi, err = resolver.Resolve(context.Background(), region, version, instanceType, imageFamily)

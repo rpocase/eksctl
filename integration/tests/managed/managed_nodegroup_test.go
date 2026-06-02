@@ -134,7 +134,7 @@ var _ = Describe("(Integration) Create Managed Nodegroups", func() {
 
 		Entry("Ubuntu with dry-run", managedCLIEntry{
 			createArgs: []string{
-				"--node-ami-family=Ubuntu2004",
+				"--node-ami-family=Ubuntu2604",
 				"--dry-run",
 			},
 		}),

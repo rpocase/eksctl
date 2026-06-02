@@ -67,16 +67,12 @@ var _ = Describe("GPU instance support", func() {
 			gpuInstanceType: "g5.12xlarge",
 			amiFamily:       api.NodeImageFamilyAmazonLinux2,
 		}),
-		Entry("Ubuntu2004", gpuInstanceEntry{
-			amiFamily:       api.NodeImageFamilyUbuntu2004,
-			gpuInstanceType: "g4dn.xlarge",
-		}),
 		Entry("Ubuntu2204", gpuInstanceEntry{
-			amiFamily:       api.NodeImageFamilyUbuntu2004,
+			amiFamily:       api.NodeImageFamilyUbuntu2204,
 			gpuInstanceType: "g4dn.xlarge",
 		}),
 		Entry("UbuntuPro2204", gpuInstanceEntry{
-			amiFamily:       api.NodeImageFamilyUbuntu2004,
+			amiFamily:       api.NodeImageFamilyUbuntuPro2204,
 			gpuInstanceType: "g4dn.xlarge",
 		}),
 		Entry("Bottlerocket INF", gpuInstanceEntry{
@@ -164,10 +160,6 @@ var _ = Describe("GPU instance support", func() {
 			amiFamily:       api.NodeImageFamilyBottlerocket,
 			gpuInstanceType: "g4dn.xlarge",
 		}),
-		Entry("Ubuntu2004", gpuInstanceEntry{
-			amiFamily:       api.NodeImageFamilyUbuntu2004,
-			gpuInstanceType: "g4dn.xlarge",
-		}),
 		Entry("Windows2019Core", gpuInstanceEntry{
 			amiFamily:       api.NodeImageFamilyWindowsServer2019CoreContainer,
 			gpuInstanceType: "g3.8xlarge",
@@ -219,7 +211,7 @@ var _ = Describe("GPU instance support", func() {
 		}
 	},
 		Entry("Windows without GPU instances", gpuInstanceEntry{
-			amiFamily: api.NodeImageFamilyUbuntu2004,
+			amiFamily: api.NodeImageFamilyUbuntu2604,
 			instanceSelector: &api.InstanceSelector{
 				VCPUs: 4,
 				GPUs:  newInt(0),
@@ -238,7 +230,7 @@ var _ = Describe("GPU instance support", func() {
 			expectWarning: true,
 		}),
 		Entry("Ubuntu with implicit GPU instance", gpuInstanceEntry{
-			amiFamily: api.NodeImageFamilyUbuntu2004,
+			amiFamily: api.NodeImageFamilyUbuntu2604,
 			instanceSelector: &api.InstanceSelector{
 				VCPUs: 4,
 				GPUs:  newInt(2),
@@ -272,7 +264,7 @@ var _ = Describe("GPU instance support", func() {
 	},
 		Entry("AmazonLinux2", api.NodeImageFamilyAmazonLinux2, true),
 		Entry("AmazonLinux2023", api.NodeImageFamilyAmazonLinux2023, false),
-		Entry("Ubuntu2004", api.NodeImageFamilyUbuntu2004, false),
+		Entry("Ubuntu2604", api.NodeImageFamilyUbuntu2604, false),
 		Entry("Windows2019Full", api.NodeImageFamilyWindowsServer2019FullContainer, true),
 		Entry("Windows2019Core", api.NodeImageFamilyWindowsServer2019CoreContainer, true),
 		Entry("Bottlerocket", api.NodeImageFamilyBottlerocket, false),
